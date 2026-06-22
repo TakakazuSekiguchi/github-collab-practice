@@ -21,11 +21,11 @@ class UserController extends Controller
             'passward' => 'required|min:8'
         ]);
 
-        $user = new User;
-        $user->name = $validated['name'];
-        $user->email = $validated['email'];
-        $user->password = Hash::make($validated['password']);
-        $user->save();
+        User::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password'])
+        ]);
 
         return redirect('/users');
     }
